@@ -1,0 +1,9 @@
+<h2>Available flights</h2>
+<%= form_for :bookings, url: new_booking_path, html: {method: :get} do %>
+  <% @flights.each do |f| %>
+    <%= radio_button_tag(:flight_id, f.id) %>
+    <%= label_tag(:flight, f.departure.strftime('%b %d, %Y at %l:%M %p')) %><br>
+  <% end %>
+  <%= hidden_field_tag :number_of_passengers, @number_of_passengers %>
+  <%= submit_tag("Book flight") %>
+<% end %>

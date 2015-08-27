@@ -1,0 +1,11 @@
+<h1>Book a flight!</h1>
+<%= form_for :flights, url: flights_path, html: {method: :get} do %>
+  <% airports = Airport.all.map { |airport| airport.name } %>
+  From: <%= select_tag(:from_airport, options_for_select(airports)) %><br>
+  To: <%= select_tag(:to_airport, options_for_select(airports)) %><br>
+  Number of passengers: <%= select_tag(:number_of_passengers, options_for_select([1,2,3,4])) %><br>
+  Date: <%= select_tag(:date, options_for_select(@dates)) %><br>
+  <%= submit_tag("Find Flights") %>
+<% end %>
+
+<%= render 'flights/available' if @flights %>

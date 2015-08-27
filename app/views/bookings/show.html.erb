@@ -1,0 +1,9 @@
+<h1>Booking information</h1>
+<%= @booking.flight.departure.strftime('%b %d, %Y at %l:%M %p') %><br>
+<% @booking.passengers.each do |passenger| %>
+  <p>
+  <%= passenger.name %><br>
+  <%= passenger.email %>
+  </p>
+
+<% end %>
