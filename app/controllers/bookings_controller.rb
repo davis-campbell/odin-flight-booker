@@ -10,6 +10,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     if @booking.save
       flash[:success] = "Successfully booked flight"
+      passenger = @booking.passengers[0]
+      PassengerMailer.thank_you(passenger).deliver_now!
       redirect_to @booking
     else
       render :new
@@ -19,7 +21,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-    
+
   end
 
   private
